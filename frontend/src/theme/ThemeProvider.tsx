@@ -1,16 +1,19 @@
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { theme } from "./theme";
 import { ThemeContext } from "./themeContext";
 
+export type Theme = 'light' | 'dark'
+
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  const [currentTheme, setCurrentTheme] = useState<Theme>('dark');
+
+  const handleThemeSwitch = () => {
+    setCurrentTheme(currentTheme === 'light' ? 'dark' : 'light')
+  }
+
   return (
-    <ThemeContext.Provider value={undefined}>
-      <MUIThemeProvider theme={theme}>
-        <CssBaseline />
+    <ThemeContext.Provider value={{ currentTheme, handleThemeSwitch }}>
         {children}
-      </MUIThemeProvider>
     </ThemeContext.Provider>
   );
 };

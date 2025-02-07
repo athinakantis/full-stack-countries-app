@@ -1,4 +1,3 @@
-import { Alert, Box, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
@@ -50,30 +49,30 @@ export const TestData = () => {
 
   if (error) {
     return (
-      <Box sx={{ p: 3 }}>
-        <Alert severity="error">{error}</Alert>
-      </Box>
+      <div className='error-container'>
+        <p className='info error'>{error}</p>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <Box sx={{ p: 3 }}>
-        <Alert severity="error">{error}</Alert>
-      </Box>
+      <div>
+        <p className='info error'>{error}</p>
+      </div>
     );
   }
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Typography variant="h2" gutterBottom>
+    <div className=''>
+      <h2>
         Test Data
-      </Typography>
-      <Typography variant="body1" color="text.secondary" gutterBottom>
+      </h2>
+      <p>
         Status: Connected | Last Updated: {new Date().toLocaleString()}
-      </Typography>
+      </p>
 
       {data.length > 0 && <DynamicTable data={data} />}
-    </Box>
+    </div>
   );
 };

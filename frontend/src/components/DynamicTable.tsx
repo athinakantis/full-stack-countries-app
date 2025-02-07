@@ -1,12 +1,3 @@
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
 import { TestData } from "../types/test";
 
 interface DynamicTableProps {
@@ -28,30 +19,30 @@ export const DynamicTable = ({ data }: DynamicTableProps) => {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
+    <div className='table-container'>
+      <table>
+        <thead>
+          <tr>
             {headers.map((header) => (
-              <TableCell key={header}>
+              <td key={header}>
                 {header.charAt(0).toUpperCase() +
                   header.slice(1).replace(/_/g, " ")}
-              </TableCell>
+              </td>
             ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
+          </tr>
+        </thead>
+        <tbody>
           {data.map((row, index) => (
-            <TableRow key={index}>
+            <tr key={index}>
               {headers.map((header) => (
-                <TableCell key={`${index}-${header}`}>
+                <td key={`${index}-${header}`}>
                   {formatValue(row[header])}
-                </TableCell>
+                </td>
               ))}
-            </TableRow>
+            </tr>
           ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        </tbody>
+      </table>
+    </div>
   );
 };

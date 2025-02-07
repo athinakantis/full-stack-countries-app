@@ -1,5 +1,12 @@
-import { createContext } from "react";
+import { createContext } from 'react';
+import { Theme } from './ThemeProvider';
 
-type ThemeContextType = undefined;
+interface ThemeContextProps {
+    currentTheme: Theme;
+    handleThemeSwitch: () => void;
+}
 
-export const ThemeContext = createContext<ThemeContextType>(undefined);
+export const ThemeContext = createContext<ThemeContextProps>({
+    currentTheme: 'dark',
+    handleThemeSwitch: () => {},
+});
