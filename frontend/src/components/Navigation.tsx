@@ -13,6 +13,9 @@ export const Navigation = () => {
                 <li>
                     <NavLink to='/test'>Test Data</NavLink>
                 </li>
+                <li>
+                    <NavLink to='/protected'>Protected</NavLink>
+                </li>
 
                 {user ? (
                     <li>
