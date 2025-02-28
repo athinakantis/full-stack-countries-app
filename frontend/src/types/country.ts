@@ -17,7 +17,7 @@ export interface Currency {
 
 export interface Country {
     name: CountryName;
-    capital?: string[];
+    capital: string[];
     region: string;
     subregion?: string;
     population: number;

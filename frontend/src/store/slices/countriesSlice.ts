@@ -18,6 +18,14 @@ export const fetchAllCountries = createAsyncThunk(
     }
 );
 
+export const fetchOneCountry = createAsyncThunk(
+    'countries/fetchOneCountry',
+    async (code: string) => {
+        const response = await countriesApi.getOneCountry(code);
+        return response;
+    }
+);
+
 export const countriesSlice = createSlice({
     name: 'countries',
     initialState,
@@ -40,11 +48,30 @@ export const countriesSlice = createSlice({
             state.error =
                 (action.payload as string) || 'Failed to fetch countries';
         });
+        builder.addCase(fetchOneCountry.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(fetchOneCountry.fulfilled, (state, action) => {
+            state.loading = false;
+            state.selectedCountry = action.payload[0];
+        });
+        builder.addCase(fetchOneCountry.rejected, (state, action) => {
+            state.loading = false;
+            state.error =
+                (action.payload as string) || 'Failed to fetch country';
+        });
     },
 });
 
 export const selectAllCountries = (state: RootState) =>
     state.countries.countries;
+
+export const selectOneCountry = (state: RootState) =>
+    state.countries.selectedCountry;
+
+export const selectCountriesError = (state: RootState) => state.countries.error;
+export const selectCountriesLoading = (state: RootState) =>
+    state.countries.loading;
 
 export const { clearSelectedCountry } = countriesSlice.actions;
 export default countriesSlice.reducer;

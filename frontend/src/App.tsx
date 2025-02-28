@@ -6,6 +6,8 @@ import { ProtectedRoute } from './components/Auth/ProtectedRoute';
 import { Navigation } from './components/Navigation';
 import { ProtectedTestData } from './components/Auth/ProtectedTestData';
 import { AuthRedirect } from './components/Auth/AuthRedirect';
+import { CountriesList } from './components/CountriesList';
+import { SingleCountry } from './components/CountryDetail';
 
 function App() {
     return (
@@ -23,6 +25,8 @@ function App() {
                                 </>
                             }
                         />
+                        <Route path='/countries' element={<CountriesList />}/> 
+                        <Route path='/countries/:name' element={<SingleCountry />}/>,
                         <Route path='/test' element={<TestData />} />
                         <Route
                             path='/protected'

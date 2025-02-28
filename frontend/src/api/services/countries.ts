@@ -3,5 +3,9 @@ import { api } from '../axios';
 
 export const countriesApi = {
     getAllCountries: (): Promise<Country[]> =>
-        api.get('/https://restcountries.com/v3.1/all?'),
+        api.get('/all?fields=name,population,capital,region,flags'),
+    getOneCountry: (name: string): Promise<Country[]> =>
+        api.get(
+            `/name/${name}?fields=name,population,capital,region,tld,subregion,currencies,languages,borders,cca3,flags`
+        ),
 };
