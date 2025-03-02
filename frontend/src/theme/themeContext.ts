@@ -1,12 +1,17 @@
 import { createContext } from 'react';
-import { Theme } from './ThemeProvider';
+
+export type Theme = 'light' | 'dark';
 
 interface ThemeContextProps {
-    currentTheme: Theme;
-    handleThemeSwitch: () => void;
+  currentTheme: Theme;
+  handleThemeSwitch: () => void;
 }
 
 export const ThemeContext = createContext<ThemeContextProps>({
-    currentTheme: 'dark',
-    handleThemeSwitch: () => {},
+  currentTheme:
+    localStorage.theme || 'light',
+  handleThemeSwitch: () => {
+      localStorage.theme === "dark" ||
+    (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+  }
 });
