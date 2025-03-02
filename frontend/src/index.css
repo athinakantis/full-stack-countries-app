@@ -1,122 +1,64 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --darkTheme01: #101010;
+  --darkTheme02: #151515;
+  --darkTheme03: #1a1a1a;
+  --darkTheme04: #1e1e1e;
+  --darkTheme05: #242424;
+  --darkTheme06: #3c3c3c;
+  --darkTheme07: #858585;
+  --darkTheme08: #dedede;
+
+  --lightTheme01: #ffffff;
+  --lightTheme02: #e9e7e4;
+  --lightTheme03: #aeaeae;
+  --lightTheme04: #8d8d8d;
+  --lightTheme05: #525252;
+  --lightTheme06: #313131;
+  --lightTheme07: #212121;
+  --lightTheme08: #161616;
 }
 
 main {
-    height: calc(100vh - 38.75px);
+  min-height: calc(100vh - 40px);
 }
 
 body {
-    font-family: sans-serif;
-    color: #2a2a2a;
-    background-color: whitesmoke;
+  font-family: 'Inter';
 }
 
-button,
-textarea,
-input,
-select,
-a {
-    font-size: inherit;
-    font-family: inherit;
-    color: inherit;
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: 'Oxygen';
+  font-weight: light;
 }
 
-.content-container {
-    width: fit-content;
-    padding: 2rem;
-    margin: 0 auto;
+p,
+nav li {
+  font-family: 'Lato';
 }
 
-nav {
-    background-color: white;
-    padding: 10px 20px;
-
-    & button {
-        background-color: transparent;
-        border: none;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
-    & ul {
-        list-style-type: none;
-        display: flex;
-    }
-
-    & li:not(:last-of-type) {
-        margin: 0 1rem 0 0;
-    }
-
-    & li a {
-        text-decoration: none;
-    }
-
-    & li a.active {
-        font-weight: bold;
-    }
+.font-lato {
+  font-family: 'Lato';
 }
 
-.login-container {
-    max-width: 400px;
-    padding: 2rem;
-    margin: 0 auto;
+@keyframes EarthSpin {
+  from {
+    background-position-x: -200%;
+  }
+  to {
+    background-position-x: 258%;
+  }
 }
 
-/* Protected Data Page */
-#protected-data-container {
-    margin: 4rem auto 0;
-    background-color: white;
+.earth-spin {
+  background-image: url('/earth.png');
+  background-size: cover;
+  background-repeat: repeat-x;
 
-    & form {
-        max-width: 500px;
-        display: flex;
-        gap: 0.4rem;
-        flex-direction: column;
-        margin: 2rem 0;
-
-        & label {
-            font-weight: 700;
-        }
-
-        & button[type='submit'] {
-            width: fit-content;
-            display: flex;
-            transition: background-color 200ms;
-            gap: 5px;
-            border: none;
-            align-items: center;
-            padding: 3px 10px;
-            margin: 1rem 0 0;
-        }
-    }
-}
-
-/* Test Data Page */
-table,
-td {
-    border: 1px solid lightgrey;
-    border-collapse: collapse;
-    padding: 5px;
-}
-
-thead {
-    font-weight: 700;
-}
-
-tbody {
-    background-color: white;
-}
-
-#table-details {
-    margin: 0 0 1rem;
-
-    & h2 {
-        margin: 0 0 0.3rem;
-        font-size: 2.3rem;
-    }
+  animation-name: EarthSpin;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
