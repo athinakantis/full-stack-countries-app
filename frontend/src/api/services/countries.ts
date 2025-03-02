@@ -8,4 +8,5 @@ export const countriesApi = {
         api.get(
             `/name/${name}?fields=name,population,capital,region,tld,subregion,currencies,languages,borders,cca3,flags`
         ),
+    getRegionalCountries: (region: string): Promise<Country[]> => api.get(`/region/${region}`)
 };
