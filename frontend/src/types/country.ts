@@ -24,6 +24,8 @@ export interface Country {
     flags: CountryFlags;
     cca3: string;
     currencies?: Record<string, Currency>;
+    languages?: Record<string, string>
+    
 }
 
 export interface CountryState {
@@ -31,4 +33,6 @@ export interface CountryState {
     loading: boolean;
     error: string | null;
     selectedCountry: Country | null;
+    regionalCountries: Country[],
+    filteredCountries: Country[]
 }
