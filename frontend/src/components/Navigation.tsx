@@ -10,10 +10,10 @@ export const Navigation = () => {
     const { currentTheme, handleThemeSwitch } = useTheme()
 
     return (
-        <header className='w-screen bg-blue-200 px-4 py-1 flex justify-center align-center dark:bg-slate-800'>
+        <header className='w-full bg-blue-200 px-4 py-1 flex justify-center align-center dark:bg-slate-800'>
             <div className="header-content max-w-screen-2xl w-11/12 flex justify-between">
                 <nav>
-                    <ul className='[&>li>a]:px-3 [&>li>a]:py-1 flex p-2 gap-4 *:text-sm *:hover:bg-blue-300  *:rounded-full *:transition-colors *:dark:bg-slate-800 *:py-1 *:dark:hover:bg-indigo-700 *:dark:text-slate-200'>
+                    <ul className='*:px-3 [&>li:has(a.active)]:dark:bg-indigo-700 [&>li:has(a.active)]:bg-blue-300 *:py-1 flex p-2 gap-4 *:text-sm *:hover:bg-blue-300 **:hover:cursor-pointer  *:rounded-full *:transition-colors *:dark:bg-slate-800 *:py-1 *:dark:hover:bg-indigo-700 *:dark:text-slate-200'>
                         <li><NavLink to='/'>Home</NavLink></li>
                         <li><NavLink to='/protected'>Profile</NavLink></li>
                         <li><NavLink to='/countries'>Countries</NavLink></li>
