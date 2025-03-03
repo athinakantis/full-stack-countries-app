@@ -6,14 +6,7 @@ export const store = configureStore({
     reducer: {
         countries: countriesReducer,
         test: testReducer,
-    },
-    // middleware: (getDefaultMiddleware) =>
-    //   getDefaultMiddleware({
-    //     serializableCheck: {
-    //       // Ignore these action types
-    //       ignoredActions: ['test/fetchTestData/rejected'],
-    //     },
-    //   }),
+    }
 });
 
 export type RootState = ReturnType<typeof store.getState>;
