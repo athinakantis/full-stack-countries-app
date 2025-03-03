@@ -36,6 +36,7 @@ export const CountriesList = () => {
         async function updateDisplayedCountries() {
             setPage(1)
             if (search) {
+                if (regionalCountries.length < 1 || regionalCountries[0].region !== filter) await dispatch(fetchRegionalCountries(filter))
                 dispatch(filterCountriesBySearch({ search, filter }));
             } else if (filter) {
                 await dispatch(fetchRegionalCountries(filter));
