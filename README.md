@@ -1,83 +1,34 @@
-# Countries Fullstack
+# Countries Full Stack App
 
-A full-stack application with NestJS backend and React frontend.
+## Features
 
-## Project Structure
+- **Authentication** via Supabase
+- User can view the countries of the world, including where it is in the world, details of the country, current weather and more.
+- Option to **filter** countries via region or **search**
+- **Dark/Light mode** for user preference
 
-```shell
-project-root/
-├── backend/   # NestJS application
-└── frontend/  # React application
-```
+## What this project has taught me
 
-## Prerequisites
+### **Redux**
 
-- Node.js (v18 or higher recommended)
-- npm (comes with Node.js)
+This project has given me the opportunity to learn about state management using **Redux**.  
+The idea behind state management in react remains the same among most state management libraries:
 
-## Installation
+1. Creating the context
+2. Connecting the context
+3. Providing the context
+4. Listening for change
 
-1. Clone the repository:
+### **Tailwind CSS**
 
-```bash
-git clone <your-repository-url>
-cd <project-directory>
-```
+Something I've been curious about for a while and I finally got to try it.  
+Basically you're able to add styling via classes and the class names are very self-explanatory.
 
-2. Install all dependencies (both frontend and backend):
+**Pros:**
 
-```bash
-npm run install:all
-```
+- I don't have to dig through a long CSS file or multiple CSS files to edit the styling
+- Syntax is easy with a very nice [Cheat Sheet](https://nerdcave.com/tailwind-cheat-sheet) to look through
 
-## Development
+**Cons:**
 
-Start both frontend and backend development servers:
-
-```bash
-npm run dev
-```
-
-The applications will be available at:
-
-- Frontend: http://localhost:5180
-- Backend: http://localhost:3000
-
-### Available Commands
-
-- `npm run dev` - Start both frontend and backend in development mode
-- `npm run dev:frontend` - Start only the frontend
-- `npm run dev:backend` - Start only the backend
-- `npm run install:all` - Install dependencies for both projects
-- `npm run install:frontend` - Install frontend dependencies
-- `npm run install:backend` - Install backend dependencies
-- `npm run build` - Build both projects
-- `npm run build:frontend` - Build frontend only
-- `npm run build:backend` - Build backend only
-
-## Environment Setup
-
-1. Create a `.env` file in the backend directory:
-
-```env
-SUPABASE_URL=https://your-supabase-instance.supabase.co
-SUPABASE_ANON_KEY=your-anon-key
-```
-
-## Tech Stack
-
-- **Frontend:**
-  - React
-  - TypeScript
-  - Vite
-- **Backend:**
-  - NestJS
-  - TypeScript
-  - Supabase
-
-## Development Notes
-
-- The backend includes CORS configuration for the frontend port (5180)
-- TypeScript is configured for both frontend and backend
-- ESLint and Prettier are set up for code formatting
-- Both applications include hot-reload functionality for development
+- Components can become cluttered
