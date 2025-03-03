@@ -22,14 +22,10 @@ export const WeatherInfo = ({ city }: { city: string }) => {
         updateWeather()
     }, [city]);
 
-    if (loading) {
-        return <p>Loading...</p>
-    }
-
     return (
-        <div className='bg-white flex flex-col shadow-md px-4 py-6 h-fit w-11/12 w-full rounded-sm min-h-40 dark:bg-slate-800 dark:text-slate-200'>
+        <div className='bg-white flex flex-col shadow-md px-6 py-8 h-fit w-11/12 w-full rounded-sm min-h-40 dark:bg-slate-800 dark:text-slate-200'>
             {error && <p className='m-auto max-w-60 text-center'>{error}</p>}
-            {loading && <p>Loading...</p>}
+            {loading && <p>Loading weather...</p>}
             {weather && (
                 <>
                     <h3 className='text-2xl text-center '>Weather report</h3>
@@ -40,8 +36,8 @@ export const WeatherInfo = ({ city }: { city: string }) => {
                     />
                     <p className='pb-1 mb-1 border-b-1 flex justify-between border-slate-300 dark:border-slate-600'><span className='font-bold font-lato'>Current temperature: </span>{weather?.main.temp}°C</p>
                     <p className='pb-1 mb-1 border-b-1 flex justify-between border-slate-300 dark:border-slate-600'><span className='font-bold font-lato'>Temp feels like: </span>{weather?.main.feels_like}°C</p>
-                    <p className='pb-1 mb-1 border-b-1 flex justify-between border-slate-300 dark:border-slate-600'><span className='font-bold font-lato'>Wind speed</span> {weather?.wind.speed}</p>
-                    <p className='pb-1 mb-1 border-b-1 flex justify-between border-slate-300 dark:border-slate-600'><span className='font-bold font-lato'>Humidity</span> {weather?.main.humitidy ? weather?.main.humitidy : 'N/A'}</p>
+                    <p className='pb-1 mb-1 border-b-1 flex justify-between border-slate-300 dark:border-slate-600'><span className='font-bold font-lato'>Wind speed</span> {weather?.wind.speed} m/s</p>
+                    <p className='pb-1 mb-1 border-b-1 flex justify-between border-slate-300 dark:border-slate-600'><span className='font-bold font-lato'>Humidity</span> {weather?.main.humidity ? `${weather?.main.humidity}%` : 'N/A'}</p>
                 </>
             )
 
