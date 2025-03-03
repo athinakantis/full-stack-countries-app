@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import {
+    resetTotalPages,
     fetchAllCountries,
     fetchRegionalCountries,
     filterCountriesBySearch,
@@ -9,59 +10,98 @@ import {
     selectCountriesLoading,
     selectRegionalCountries,
     selectSearchedCountries,
+    selectTotalPages,
 } from '../store/slices/countriesSlice';
 import { Country } from '../types/country';
 import { Link } from 'react-router-dom';
 import { useSearch } from '../context/SearchContext';
 import { Spinner } from './Spinner';
+import { Error } from './Error';
+import Pagination from '@mui/material/Pagination';
 
 export const CountriesList = () => {
-    const { filter, search } = useSearch()
-    const [displayedCountries, setDisplayedCountries] = useState<Country[]>([])
+    const { filter, search } = useSearch();
+    const [displayedCountries, setDisplayedCountries] = useState<Country[]>([]);
     const dispatch = useAppDispatch();
     const allCountries = useAppSelector(selectAllCountries);
-    const regionalCountries = useAppSelector(selectRegionalCountries)
-    const searchedCountries = useAppSelector(selectSearchedCountries)
-    const loading = useAppSelector(selectCountriesLoading)
-    const error = useAppSelector(selectCountriesError)
+    const regionalCountries = useAppSelector(selectRegionalCountries);
+    const searchedCountries = useAppSelector(selectSearchedCountries);
+    const loading = useAppSelector(selectCountriesLoading);
+    const error = useAppSelector(selectCountriesError);
+    const [page, setPage] = useState(1)
+    const totalPages = useAppSelector(selectTotalPages)
 
     useEffect(() => {
-        dispatch(fetchAllCountries());
-        if (search) {
-            dispatch(filterCountriesBySearch(search))
-            setDisplayedCountries(searchedCountries)
-        } else if (filter) {
-            console.log('There is a filter')
-            dispatch(fetchRegionalCountries(filter))
-            setDisplayedCountries(regionalCountries)
-        } else {
-            setDisplayedCountries(allCountries)
+        if (allCountries.length < 1) dispatch(fetchAllCountries());
+        async function updateDisplayedCountries() {
+            setPage(1)
+            if (search) {
+                dispatch(filterCountriesBySearch({ search, filter }));
+            } else if (filter) {
+                await dispatch(fetchRegionalCountries(filter));
+            } else if (!filter && !search) dispatch(resetTotalPages())
         }
+        updateDisplayedCountries();
     }, [filter, search]);
 
-    if (loading) return <Spinner />
-    if (error) return (
-        <div className='w-80 mx-auto p-6 text-slate-800 dark:text-slate-200'>Something went wrong!</div>
-    )
+    function pageinateCountries(array: Country[], pageSize = 10) {
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        return array.slice(startIndex, endIndex);
+    }
+
+    const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value);
+    };
+
+    useEffect(() => {
+        if (search) setDisplayedCountries(pageinateCountries(searchedCountries));
+        if (filter && !search) setDisplayedCountries(pageinateCountries(regionalCountries));
+        if (!filter && !search) setDisplayedCountries(pageinateCountries(allCountries));
+    }, [allCountries, regionalCountries, searchedCountries, search, filter, page]);
+
+    if (loading) return <Spinner />;
+    if (error) return <Error error={error} />;
 
     return (
         <>
-            <div id='countries-container' className='flex flex-wrap gap-4 justify-center pt-10 '>
+            <div
+                id='countries-container'
+                className='flex flex-wrap gap-4 justify-center pt-10'
+            >
                 {displayedCountries.length > 0 &&
                     displayedCountries.map((country: Country) => (
-                        <Link className='h-fit' key={country.cca3} to={country.name.common}>
-                            <div key={country.cca3} className='country-card rounded-sm overflow-hidden transition-shadow hover:shadow-lg bg-white dark:text-slate-200 dark:bg-slate-800'>
+                        <div
+                            key={country.cca3}
+                            className='country-card rounded-sm overflow-hidden transition-shadow hover:shadow-lg bg-white dark:text-slate-200 dark:bg-slate-800 h-fit'
+                        >
+                            <Link to={country.name.common}>
                                 <img
+                                    width={320}
                                     src={country.flags.png}
                                     alt={country.flags.alt}
                                 />
                                 <div className='p-3'>
                                     <p className='text-lg font-semibold'>{country.name.common}</p>
-                                    <p><span className='font-medium'>Population:</span> {country.population!.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                                    <p>
+                                        <span className='font-medium'>Population: </span>
+                                        {country
+                                            .population!.toString()
+                                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                    </p>
                                 </div>
-                            </div>
-                        </Link>
+                            </Link>
+                        </div>
                     ))}
+                {totalPages > 1 && (
+                    <Pagination
+                        className='w-full my-6 justify-self-center [&>ul]:justify-self-center [&>ul>li>button]:dark-bg-slate-200 justify-self-end h-fit mt-auto align-self-end'
+                        count={totalPages}
+                        color='primary'
+                        page={page}
+                        onChange={handleChange}
+                    />
+                )}
             </div>
         </>
     );
