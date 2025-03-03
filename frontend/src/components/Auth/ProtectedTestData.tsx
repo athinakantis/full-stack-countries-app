@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import {TestData} from '../../types/test'
+import { TestData } from '../../types/test'
 import { supabase } from '../../config/supabase';
 import { DynamicTable } from '../DynamicTable';
 import { CreateEntryForm } from '../CreateEntryForm';
+import { Spinner } from '../Spinner';
+import { Error } from '../Error';
 
 export const ProtectedTestData = () => {
     const [data, setData] = useState<TestData[]>([])
@@ -13,15 +15,15 @@ export const ProtectedTestData = () => {
     const { user } = useAuth();
     console.log(user);
 
-    const fetchProtectedData = async() => {
+    const fetchProtectedData = async () => {
         try {
             const { data: protectedData, error } = await supabase
-            .from('protected_data')
-            .select('*')
+                .from('protected_data')
+                .select('*')
             if (error) throw error;
             setData(protectedData)
         } catch (error) {
-            setError(error instanceof Error ? error.message : "An unknown error occured")
+            setError("An error occurred")
         } finally {
             setLoading(false)
         }
@@ -30,16 +32,16 @@ export const ProtectedTestData = () => {
     useEffect(() => {
         fetchProtectedData()
     }, [])
-    
-    if (loading) return <div>Loading...</div>
-    if (error) return <div>Error: {error}</div>
+
+    if (loading) return <Spinner />
+    if (error) return <Error error={error} />
 
     return (
         <div id='protected-data-container' className='content-container'>
             <h2>This data is only accessible to authenticated users</h2>
             <h3>Logged in as {user!.user_metadata.full_name}</h3>
             <CreateEntryForm onSuccess={fetchProtectedData} />
-            {data.length > 0 ? <DynamicTable data={data}/> : <p>No protected data available, please create some</p>}
+            {data.length > 0 ? <DynamicTable data={data} /> : <p>No protected data available, please create some</p>}
         </div>
     );
 };
