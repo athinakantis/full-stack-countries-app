@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { CountryState } from '../../types/country';
 import { countriesApi } from '../../api/services/countries';
 import { RootState } from '../store';
+import { calculateTotalPages } from '../../utils/calc';
 
 const initialState: CountryState = {
   countries: [],
@@ -37,9 +38,7 @@ export const fetchRegionalCountries = createAsyncThunk(
   }
 );
 
-const calculateTotalPages = (arrayLength: number, pageItems: number = 10) => {
-    return Math.ceil(arrayLength / pageItems)
-}
+
 
 export const countriesSlice = createSlice({
   name: 'countries',
