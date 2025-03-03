@@ -3,6 +3,7 @@ export interface CityWeather {
         {
             description: string;
             icon: string;
+            main: string
         }
     ];
     wind: {
@@ -11,6 +12,6 @@ export interface CityWeather {
     main: {
         temp: number;
         feels_like: number;
-        humitidy: number;
+        humidity: number;
     };
 }
