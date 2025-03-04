@@ -1,25 +1,35 @@
-import { ReactNode, useEffect, useState } from "react";
-import { ThemeContext } from "./themeContext";
+import { ReactNode, useEffect, useState } from 'react';
+import { ThemeContext } from './themeContext';
 import { Theme } from './themeContext';
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [currentTheme, setCurrentTheme] = useState<Theme>(localStorage.theme || window.matchMedia("(prefers-color-scheme: dark)"))
+    const [currentTheme, setCurrentTheme] = useState<Theme>(
+        localStorage.theme || ((!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light')
+    );
 
-  const handleThemeSwitch = () => {
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    setCurrentTheme(newTheme)
-    localStorage.setItem('theme', newTheme)
-  }
+    useEffect(() => {
+      if (!localStorage.theme) {
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? setCurrentTheme('dark')
+        : setCurrentTheme('light');
+      }
+    }, []);
 
-  const values = { currentTheme, handleThemeSwitch }
+    const handleThemeSwitch = () => {
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setCurrentTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+    };
 
-  useEffect(() => {
-    currentTheme === 'dark' ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')
-  }, [currentTheme])
+    const values = { currentTheme, handleThemeSwitch };
 
-  return (
-    <ThemeContext.Provider value={values}>
-      {children}
-    </ThemeContext.Provider>
-  );
+    useEffect(() => {
+        currentTheme === 'dark'
+            ? document.documentElement.classList.add('dark')
+            : document.documentElement.classList.remove('dark');
+    }, [currentTheme]);
+
+    return (
+        <ThemeContext.Provider value={values}>{children}</ThemeContext.Provider>
+    );
 };
