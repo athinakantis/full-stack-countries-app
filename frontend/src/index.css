@@ -5,6 +5,38 @@ main {
   min-height: calc(100vh - 52px);
 }
 
+@layer utilities {
+  .arrowleft-top {
+    top: 5px;
+  }
+
+  .link-btn {
+    transition: drop-shadow 10ms linear;
+  }
+
+  .button-shadow {
+    filter: drop-shadow(0 0px 0px oklch(0.359 0.144 278.697));
+
+    &:hover {
+      filter: drop-shadow(0 3px 0px oklch(0.257 0.09 281.288));
+      box-shadow: inset 5px 8px 20px oklch(0.398 0.195 277.366);
+      background-color: oklch(0.511 0.262 276.966);
+    }
+  }
+
+  & .country-card {
+    scale: 1;
+    transition: all 200ms;
+    &:hover {
+      scale: 1.05;
+    }
+  }
+  /* 
+  & .country-card:hover img {
+    scale: 1.05;
+  } */
+}
+
 body {
   font-family: 'Inter';
 }
