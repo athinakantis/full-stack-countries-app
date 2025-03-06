@@ -18,6 +18,7 @@ import { useSearch } from '../context/SearchContext';
 import { Spinner } from './Spinner';
 import { Error } from './Error';
 import Pagination from '@mui/material/Pagination';
+import { formatPopulation } from '../utils/formatCountryData';
 
 export const CountriesList = () => {
     const { filter, search } = useSearch();
@@ -74,7 +75,7 @@ export const CountriesList = () => {
                     displayedCountries.map((country: Country) => (
                         <div
                             key={country.cca3}
-                            className='country-card rounded-sm overflow-hidden transition-shadow hover:shadow-lg bg-white dark:text-slate-200 dark:bg-slate-800 h-fit'
+                            className='country-card rounded-sm overflow-hidden transition-shadow hover:shadow-lg bg-white dark:text-slate-200 dark:bg-slate-800 h-fit transition-all'
                         >
                             <Link to={country.name.common}>
                                 <img
@@ -86,9 +87,7 @@ export const CountriesList = () => {
                                     <p className='text-lg font-semibold'>{country.name.common}</p>
                                     <p>
                                         <span className='font-medium'>Population: </span>
-                                        {country
-                                            .population!.toString()
-                                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                        {formatPopulation(country.population)}
                                     </p>
                                 </div>
                             </Link>
