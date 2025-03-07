@@ -6,7 +6,6 @@ import { useAppSelector } from '../store/hooks';
 import { selectAllCountries } from '../store/slices/countriesSlice';
 import { Spinner } from './Spinner';
 import { Error } from './Error';
-import { Link } from 'react-router-dom';
 import CountryCard from './CountryCard';
 
 const Favorites = () => {
