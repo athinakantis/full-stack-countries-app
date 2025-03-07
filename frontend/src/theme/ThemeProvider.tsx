@@ -3,17 +3,7 @@ import { ThemeContext } from './themeContext';
 import { Theme } from './themeContext';
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-    const [currentTheme, setCurrentTheme] = useState<Theme>(
-        localStorage.theme || ((!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light')
-    );
-
-    useEffect(() => {
-      if (!localStorage.theme) {
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? setCurrentTheme('dark')
-        : setCurrentTheme('light');
-      }
-    }, []);
+  const [currentTheme, setCurrentTheme] = useState<Theme>(localStorage.theme || (window.matchMedia("(prefers-color-scheme: dark)") ? 'dark' : 'light'))
 
     const handleThemeSwitch = () => {
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
