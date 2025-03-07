@@ -1,7 +1,7 @@
 export interface CountryName {
     common: string;
     official: string;
-    nativeName: Record<string, { official: string; common: string }>;
+    nativeName?: Record<string, { official: string; common: string }>;
 }
 
 export interface CountryFlags {
@@ -24,8 +24,8 @@ export interface Country {
     flags: CountryFlags;
     cca3: string;
     currencies?: Record<string, Currency>;
-    languages?: Record<string, string>
-    latlng: [number, number]
+    languages?: Record<string, string>;
+    latlng: [number, number];
 }
 
 export interface CountryState {
@@ -33,7 +33,7 @@ export interface CountryState {
     loading: boolean;
     error: string | null;
     selectedCountry: Country | null;
-    regionalCountries: Country[],
-    filteredCountries: Country[],
-    totalPages: number
+    regionalCountries: Country[];
+    filteredCountries: Country[];
+    totalPages: number;
 }
