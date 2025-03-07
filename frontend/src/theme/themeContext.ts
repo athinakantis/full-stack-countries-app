@@ -4,6 +4,7 @@ export type Theme = 'light' | 'dark';
 
 interface ThemeContextProps {
     currentTheme: Theme;
+    handleThemeSwitch: () => void;
 }
 
 export const ThemeContext = createContext<ThemeContextProps>({
@@ -13,4 +14,5 @@ export const ThemeContext = createContext<ThemeContextProps>({
         window.matchMedia('(prefers-color-scheme: dark)').matches
             ? 'dark'
             : 'light'),
+    handleThemeSwitch: () => {},
 });
