@@ -15,7 +15,7 @@ export const Navigation = () => {
                 <nav>
                     <ul className='*:px-3 [&>li:has(a.active)]:dark:bg-indigo-700 [&>li:has(a.active)]:bg-blue-300 *:py-1 flex p-2 gap-4 *:text-sm *:hover:bg-blue-300 **:hover:cursor-pointer  *:rounded-full *:transition-colors *:dark:bg-slate-800 *:py-1 *:dark:hover:bg-indigo-700 *:dark:text-slate-200'>
                         <li><NavLink to='/'>Home</NavLink></li>
-                        <li><NavLink to='/protected'>Profile</NavLink></li>
+                        {user && <li><NavLink to='/favorites'>Favorites</NavLink></li>}
                         <li><NavLink to='/countries'>Countries</NavLink></li>
 
                         {user ? (
