@@ -2,10 +2,10 @@
 
 ## Features
 
-- **Authentication** via Supabase
-- User can view the countries of the world, including where it is in the world, details of the country, current weather and more.
-- Option to **filter** countries via region or **search**
-- **Dark/Light mode** for user preference
+-   **Authentication** via Supabase
+-   User can view the countries of the world, including where it is in the world, details of the country, current weather and more.
+-   Option to **filter** countries via region or **search**
+-   **Dark/Light mode** for user preference
 
 ## What this project has taught me
 
@@ -26,9 +26,13 @@ Basically you're able to add styling via classes and the class names are very se
 
 **Pros:**
 
-- I don't have to dig through a long CSS file or multiple CSS files to edit the styling
-- Syntax is easy with a very nice [Cheat Sheet](https://nerdcave.com/tailwind-cheat-sheet) to look through
+-   I don't have to dig through a long CSS file or multiple CSS files to edit the styling
+-   Syntax is easy with a very nice [Cheat Sheet](https://nerdcave.com/tailwind-cheat-sheet) to look through
 
 **Cons:**
 
-- Components can become cluttered
+-   Components can become cluttered
+
+### Testing using Cypress
+
+I was pleasantly surprised seeing UI testing in action using Cypress.
