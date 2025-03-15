@@ -84,10 +84,10 @@ export const CountriesList = () => {
                 id='countries-container'
                 className='flex flex-wrap gap-4 justify-center pt-10'
             >
-                {displayedCountries.length > 0 &&
+                {displayedCountries.length > 0 ?
                     displayedCountries.map((country: Country) => (
                         <CountryCard key={country.cca3} country={country} />
-                    ))}
+                    )) : <p>No countries found</p>}
                 {totalPages > 1 && (
                     <Pagination
                         className='w-full my-6 justify-self-center [&>ul]:justify-self-center [&>ul>li>button]:dark-bg-slate-200 justify-self-end h-fit mt-auto align-self-end'

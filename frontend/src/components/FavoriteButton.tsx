@@ -73,6 +73,7 @@ const FavoriteButton = ({ country, onToggle }: FavoriteButtonProps) => {
                     }
                 >
                     <button
+                        data-testid='favorite-button'
                         className='hover:cursor-pointer absolute p-2 right-2 top-2 rounded-full z-10'
                         onClick={handleToggleFavorite}
                     >

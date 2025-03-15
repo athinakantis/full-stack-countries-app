@@ -26,7 +26,7 @@ export const Navigation = () => {
 
                 <div className='flex items-center'>
                     {location.pathname === '/countries' && <ToolBar />}
-                    <button onClick={handleThemeSwitch} className='hover:bg-blue-300 dark:hover:bg-indigo-700 p-1 h-fit rounded-full hover:cursor-pointer'>
+                    <button onClick={handleThemeSwitch} id='themeToggle' className='hover:bg-blue-300 dark:hover:bg-indigo-700 p-1 h-fit rounded-full hover:cursor-pointer'>
                         {currentTheme === 'light' ?
                             <Sun color='#1d293d' />
                             : <Moon size='20' color='#e2e8f0' />}
