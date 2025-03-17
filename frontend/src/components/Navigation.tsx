@@ -20,7 +20,7 @@ export const Navigation = () => {
 
                         {user ? (
                             <li><button onClick={signOut}>Sign out</button></li>)
-                            : (<li><NavLink to='/login'>Log in</NavLink></li>)}
+                            : (<li><NavLink to='/'>Log in</NavLink></li>)}
                     </ul>
                 </nav>
 
