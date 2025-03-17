@@ -1,9 +1,9 @@
 name: Run Cypress Tests
 
 on:
-  push:
+  pull_request_review:
     branches:
-      - writing-tests
+      - starter
 
 jobs:
   cypress:
