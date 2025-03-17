@@ -23,7 +23,7 @@ export const WeatherInfo = ({ city }: { city: string }) => {
     }, [city]);
 
     return (
-        <div className='bg-white flex flex-col shadow-md px-6 py-8 h-fit w-11/12 w-full rounded-sm min-h-40 dark:bg-slate-800 dark:text-slate-200'>
+        <div data-testid='weather' className='bg-white flex flex-col shadow-md px-6 py-8 h-fit w-11/12 w-full rounded-sm min-h-40 dark:bg-slate-800 dark:text-slate-200'>
             {error && <p className='m-auto max-w-60 text-center'>{error}</p>}
             {loading && <p>Loading weather...</p>}
             {weather && (

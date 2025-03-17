@@ -32,3 +32,30 @@ Basically you're able to add styling via classes and the class names are very se
 **Cons:**
 
 - Components can become cluttered
+
+### Testing using Cypress
+
+I was pleasantly surprised seeing UI testing in action using Cypress.
+
+### Running Cypress test using GitHub Actions
+
+What I had to do:
+
+1. Create a .yml file
+
+```js
+// .github/workflows/main.yml
+name: Run Cypress Tests
+
+on:
+  push:
+    branches:
+      - writing-tests
+
+```
+
+Here I have:
+
+- Defined a name for the workflow ("Run Cypress Tests")
+- Defined what events the workflow will run ("on: push")
+- Defined which branches the workflow will run ("branches: writing-test")

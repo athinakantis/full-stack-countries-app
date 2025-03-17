@@ -1,0 +1,38 @@
+name: Run Cypress Tests
+
+on:
+  push:
+    branches:
+      - writing-tests
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend  # Run all commands inside the frontend directory
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'  # Cache dependencies for faster installs
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run Cypress tests
+        run: npm run e2e:dev
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
+          VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}

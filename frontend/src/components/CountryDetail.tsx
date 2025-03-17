@@ -12,7 +12,7 @@ import { APIProvider, ColorScheme, Map, Marker } from '@vis.gl/react-google-maps
 import { Spinner } from './Spinner';
 import { useTheme } from '../theme/useTheme';
 import { ArrowLeft } from 'lucide-react';
-import { formatPopulation } from '../utils/formatCountryData';
+import { formatPopulation, formatCurrencies } from '../utils/formatCountryData';
 
 export const SingleCountry = () => {
     const { name } = useParams();
@@ -53,11 +53,11 @@ export const SingleCountry = () => {
                             <div className="text-md">
                                 <p className='mt-4'><span className='font-bold'>{country.capital.length > 1 ? 'Capitals: ' : 'Capital: '}</span>{country.capital.join(', ')}</p>
                                 <p><span className='font-bold'>Region:</span> {country.region}</p>
-                                <p><span className='font-bold'>Subregion:</span> {country.subregion}</p>
+                                {country.subregion && <p><span className='font-bold'>Subregion:</span> {country.subregion}</p>}
                                 <p><span className='font-bold'>Languages: </span>{country.languages ? Object.values(country.languages).join(', ') : 'N/A'}</p>
                                 <p><span className='font-bold'>Population: </span>{formatPopulation(country.population)}</p>
                                 <p><span className='font-bold'>Currencies: </span>
-                                    {Object.values(country.currencies!).map(currency => currency.name).join(', ')}
+                                    {formatCurrencies(country.currencies!)}
                                 </p>
                             </div>
                         </div>
@@ -79,7 +79,7 @@ export const SingleCountry = () => {
                         }
                     </div>
                     <div className='flex gap-8 flex-col max-w-md'>
-                        <img src={country.flags.png} className='rounded-sm shadow-sm h-fit' alt='' />
+                        <img id='country-flag' src={country.flags.png} className='rounded-sm shadow-sm h-fit' alt='' />
                         <WeatherInfo city={country.capital[0]} />
                     </div>
                 </>

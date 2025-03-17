@@ -25,7 +25,7 @@ export interface Country {
     cca3: string;
     currencies?: Record<string, Currency>;
     languages?: Record<string, string>;
-    latlng: [number, number];
+    latlng?: [number, number];
 }
 
 export interface CountryState {
