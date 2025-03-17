@@ -13,6 +13,7 @@ const CountryCard = ({ country }: { country: Country }) => {
             <FavoriteButton country={country} />
             <Link to={country.name.common}>
                 <img
+                    className='box-border border-b-1 border-opacity-10 border-slate-200 dark:border-b-0'
                     width={320}
                     src={country.flags.png}
                     alt={country.flags.alt}
