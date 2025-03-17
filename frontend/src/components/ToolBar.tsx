@@ -1,7 +1,7 @@
 import { useSearch } from '../context/SearchContext'
 
 export const ToolBar = () => {
-  const { setFilter, setSearch } = useSearch();
+  const { setFilter, setSearch, search } = useSearch();
 
   return (
     <div id='toolbar' className='flex h-fit items-center justify-center my-auto'>
@@ -19,7 +19,7 @@ export const ToolBar = () => {
       </select>
 
       <label htmlFor="searchBar" className='font-lato text-sm mr-2 dark:text-slate-200'>Search</label>
-      <input onChange={(e) => setSearch(e.target.value)} className='bg-white rounded-full py-1 px-2 text-sm mr-6 font-lato dark:bg-slate-200' type="text" name="searchBar" id="searchBar" />
+      <input value={search} onChange={(e) => setSearch(e.target.value)} className='bg-white rounded-full py-1 px-2 text-sm mr-6 font-lato dark:bg-slate-200' type="text" name="searchBar" id="searchBar" />
     </div>
   )
 }
