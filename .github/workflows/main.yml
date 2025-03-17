@@ -29,7 +29,10 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Start server and run Cypress tests
+      - name: Start server
+        run: npm run preview
+        
+      - name: Run Cypress tests
         run: npm run cypress:run
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
