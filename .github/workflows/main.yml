@@ -30,8 +30,8 @@ jobs:
         run: npm run build
 
       - name: Start server
-        run: npm run preview
-        
+        run: npm run dev
+
       - name: Run Cypress tests
         run: npm run cypress:run
         env:
