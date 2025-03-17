@@ -30,7 +30,7 @@ jobs:
         run: npm run build
 
       - name: Run Cypress tests
-        run: npm run dev && npm run cypress:run
+        run: npm run e2e:dev
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
