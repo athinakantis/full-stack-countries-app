@@ -9,10 +9,6 @@ jobs:
   cypress:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./frontend  # Run all commands inside the frontend directory
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'  # Cache dependencies for faster installs
 
       - name: Install dependencies
@@ -35,4 +31,4 @@ jobs:
           VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
 
       - name: Start server and run Cypress tests
-        run: npm run e2e:dev
+        run: npm run cypress:run
