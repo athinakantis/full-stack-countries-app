@@ -32,15 +32,15 @@ export const CountriesList = () => {
     const totalPages = useAppSelector(selectTotalPages);
 
     useEffect(() => {
-        if (allCountries.length < 1) dispatch(fetchAllCountries());
         async function updateDisplayedCountries() {
+            if (allCountries.length < 1) dispatch(fetchAllCountries());
             setPage(1);
             if (search) {
-                if (
-                    regionalCountries.length < 1 ||
-                    regionalCountries[0].region !== filter
-                )
+                if (filter) {
+                    console.log('Fetching regional countries')
                     await dispatch(fetchRegionalCountries(filter));
+                }
+                console.log('Searching countries')
                 dispatch(filterCountriesBySearch({ search, filter }));
             } else if (filter) {
                 await dispatch(fetchRegionalCountries(filter));
@@ -60,12 +60,13 @@ export const CountriesList = () => {
     };
 
     useEffect(() => {
-        if (search)
-            setDisplayedCountries(pageinateCountries(searchedCountries));
-        if (filter && !search)
+        if (search) setDisplayedCountries(pageinateCountries(searchedCountries));
+        if (filter && !search) {
             setDisplayedCountries(pageinateCountries(regionalCountries));
-        if (!filter && !search)
+        }
+        if (!filter && !search) {
             setDisplayedCountries(pageinateCountries(allCountries));
+        }
     }, [
         allCountries,
         regionalCountries,
@@ -84,10 +85,16 @@ export const CountriesList = () => {
                 id='countries-container'
                 className='flex flex-wrap gap-4 justify-center pt-10'
             >
-                {displayedCountries.length > 0 ?
+                {displayedCountries.length > 0 ? (
                     displayedCountries.map((country: Country) => (
-                        <CountryCard key={country.cca3} country={country} />
-                    )) : <p>No countries found</p>}
+                        <CountryCard
+                            key={country.cca3}
+                            country={country}
+                        />
+                    ))
+                ) : (
+                    <p className='dark:text-slate-200 text-xl mt-50'>No countries found</p>
+                )}
                 {totalPages > 1 && (
                     <Pagination
                         className='w-full my-6 justify-self-center [&>ul]:justify-self-center [&>ul>li>button]:dark-bg-slate-200 justify-self-end h-fit mt-auto align-self-end'
