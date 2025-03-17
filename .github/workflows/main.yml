@@ -5,7 +5,7 @@ on:
     branches-ignore:
       - starter
   pull_request_review:
-    branches:
+    branches-ignore:
       - starter
   pull_request:
     branches:
