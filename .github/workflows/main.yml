@@ -1,6 +1,9 @@
 name: Run Cypress Tests
 
 on:
+  push:
+    branches-ignore:
+      - starter
   pull_request_review:
     branches:
       - starter
@@ -11,7 +14,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./frontend  # Run all commands inside the frontend directory
+        working-directory: ./frontend  
 
     steps:
       - name: Checkout repository
@@ -21,7 +24,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'  # Cache dependencies for faster installs
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
