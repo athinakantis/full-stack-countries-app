@@ -37,7 +37,7 @@ Basically you're able to add styling via classes and the class names are very se
 
 I was pleasantly surprised seeing UI testing in action using Cypress.
 
-#### Running Cypress test using GitHub Actions
+### Running Cypress test using GitHub Actions
 
 What I had to do:
 
@@ -53,3 +53,9 @@ on:
       - writing-tests
 
 ```
+
+Here I have:
+
+- Defined a name for the workflow ("Run Cypress Tests")
+- Defined what events the workflow will run ("on: push")
+- Defined which branches the workflow will run ("branches: writing-test")
