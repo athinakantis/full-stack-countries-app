@@ -31,10 +31,6 @@ main {
       scale: 1.05;
     }
   }
-  /* 
-  & .country-card:hover img {
-    scale: 1.05;
-  } */
 }
 
 body {
