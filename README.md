@@ -1,5 +1,7 @@
 # Countries Full Stack App
 
+![Run Cypress Tests](https://github.com/athinakantis/full-stack-countries-app/actions/workflows/main.yml/badge.svg)
+
 ## Technologies Used
 
 - NestJS
