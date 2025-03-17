@@ -28,6 +28,11 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
+          VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
 
       - name: Start server and run Cypress tests
         run: npm run e2e:dev
