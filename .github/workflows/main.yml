@@ -29,11 +29,8 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Start server
-        run: npm run dev
-
       - name: Run Cypress tests
-        run: npm run cypress:run
+        run: npm run dev && npm run cypress:run
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
