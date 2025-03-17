@@ -11,7 +11,7 @@ describe('Countries application', () => {
 
     filterTestValues.forEach((region) => {
         it(`Should correctly filter by region: ${region}`, () => {
-            cy.get('select').select(region).wait(1000);
+            cy.get('select').select(region).wait(50);
             cy.getCountryCards().first().click();
             cy.findByText(region).children().should('have.text', 'Region:');
         });
@@ -20,7 +20,7 @@ describe('Countries application', () => {
 
 describe('Testing search function', () => {
     beforeEach(() => {
-        cy.visit('/countries');
+        cy.visit('/countries').wait(1000)
     });
 
     const searchTestValues = [

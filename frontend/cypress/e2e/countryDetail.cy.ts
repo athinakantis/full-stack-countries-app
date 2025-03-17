@@ -70,8 +70,6 @@ describe('Test "back to countries" navigation', () => {
   it('Navigates to /countries', () => {
     cy.visit('/countries/Finland').wait(1000);
     cy.findByRole('link', { name: 'Back to countries' }).click();
-    cy.location().then((location) => {
-      expect(location.pathname).to.equal('/countries');
-    });
+    cy.location('pathname').should('eq', '/countries')
   });
 });
