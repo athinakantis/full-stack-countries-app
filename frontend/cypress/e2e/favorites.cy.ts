@@ -1,0 +1,16 @@
+describe('Testing favorites', () => {
+  beforeEach(() => cy.login().wait(1000))
+
+  it('Can add countries as favorites', () => {
+    cy.visit('/countries');
+    cy.get('button[data-test-id="favorite-button"]').first().click().wait(500)
+
+    cy.visit('/favorites').getCountryCards().should('have.length', 1)
+  })
+
+  it('Can remove from favorites', () => {
+    cy.visit('/favorites')
+    cy.get('button[data-test-id="favorite-button"]').first().click().wait(500)
+    cy.getCountryCards().should('not.exist')
+  })
+})
