@@ -1,9 +1,6 @@
 name: Run Cypress Tests
 
 on:
-  push:
-    branches-ignore:
-      - starter
   pull_request_review:
     branches-ignore:
       - starter
