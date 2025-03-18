@@ -57,3 +57,5 @@ Thumbs.db
 # Project specific
 backend/dist/
 frontend/dist/
+
+frontend/cypress.env.json

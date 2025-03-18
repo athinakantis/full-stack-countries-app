@@ -65,24 +65,24 @@ const FavoriteButton = ({ country, onToggle }: FavoriteButtonProps) => {
 
     if (user)
         return (
-                <Tooltip
-                    title={
-                        isFavorite
-                            ? 'Remove from favorites'
-                            : 'Add to favorites'
-                    }
+            <Tooltip
+                title={
+                    isFavorite
+                        ? 'Remove from favorites'
+                        : 'Add to favorites'
+                }
+            >
+                <button
+                    data-test-id='favorite-button'
+                    className='favorite-button hover:cursor-pointer absolute p-2 right-2 top-2 rounded-full z-10'
+                    onClick={handleToggleFavorite}
                 >
-                    <button
-                        data-testid='favorite-button'
-                        className='hover:cursor-pointer absolute p-2 right-2 top-2 rounded-full z-10'
-                        onClick={handleToggleFavorite}
-                    >
-                        <Heart
-                            fill={isFavorite ? '#e2e8f0' : 'transparent'}
-                            color='#e2e8f0'
-                        />
-                    </button>
-                </Tooltip>
+                    <Heart
+                        fill={isFavorite ? '#e2e8f0' : 'transparent'}
+                        color='#e2e8f0'
+                    />
+                </button>
+            </Tooltip>
         );
 };
 
