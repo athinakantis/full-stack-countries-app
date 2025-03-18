@@ -42,5 +42,5 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
           VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
           VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
-          CYPRESS_TEST_USER_EMAIL: ${{secrets.TEST_USER_EMAIL}}
-          CYPRESS_TEST_USER_PW: ${{secrets.TEST_USER_PW}}
+          CYPRESS_TEST_USER_EMAIL: ${{secrets.CYPRESS_TEST_USER_EMAIL}}
+          CYPRESS_TEST_USER_PW: ${{secrets.CYPRESS_TEST_USER_PW}}
