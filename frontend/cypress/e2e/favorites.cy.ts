@@ -3,14 +3,14 @@ describe('Testing favorites', () => {
 
   it('Can add countries as favorites', () => {
     cy.visit('/countries');
-    cy.get('button[data-test-id="favorite-button"]').first().click().wait(500)
+    cy.get('button[data-test-id="favorite-button"]').first().click().wait(1000)
 
     cy.visit('/favorites').getCountryCards().should('have.length', 1)
   })
 
   it('Can remove from favorites', () => {
     cy.visit('/favorites')
-    cy.get('button[data-test-id="favorite-button"]').first().click().wait(500)
+    cy.get('button[data-test-id="favorite-button"]').first().click().wait(1000)
     cy.getCountryCards().should('not.exist')
   })
 })

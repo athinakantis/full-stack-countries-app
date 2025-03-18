@@ -72,4 +72,5 @@ cy.visit('/login')
 cy.get('#email').type(Cypress.env('TEST_USER_EMAIL'))
 cy.get('input[type="password"]').type(Cypress.env('TEST_USER_PW'))
 cy.get('button[type="submit"]').click()
+cy.log('Logged in to test user account')
 });
