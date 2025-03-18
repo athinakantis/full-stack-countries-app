@@ -52,25 +52,25 @@ Cypress.Commands.add('getCountryCards', (index?: number) => {
 });
 
 Cypress.Commands.add('login', () => {
-//   cy.request({
-//     method: 'POST',
-//     url: `https://${Cypress.env(
-//       'SUPABASE_URL'
-//     )}/auth/v1/token?grant_type=password`,
-//     body: {
-//       email: Cypress.env('TEST_USER_EMAIL'),
-//       password: Cypress.env('TEST_USER_PW'),
-//     },
-//     headers: {
-//       apikey: Cypress.env('SUPABASE_ANON_KEY'),
-//     },
-//   }).then(({ body }) => {
-//     localStorage.setItem('supabase.auth.token', JSON.stringify(body));
-//   });
+  //   cy.request({
+  //     method: 'POST',
+  //     url: `https://${Cypress.env(
+  //       'SUPABASE_URL'
+  //     )}/auth/v1/token?grant_type=password`,
+  //     body: {
+  //       email: Cypress.env('TEST_USER_EMAIL'),
+  //       password: Cypress.env('TEST_USER_PW'),
+  //     },
+  //     headers: {
+  //       apikey: Cypress.env('SUPABASE_ANON_KEY'),
+  //     },
+  //   }).then(({ body }) => {
+  //     localStorage.setItem('supabase.auth.token', JSON.stringify(body));
+  //   });
 
-cy.visit('/login')
-cy.get('#email').type(Cypress.env('TEST_USER_EMAIL'))
-cy.get('input[type="password"]').type(Cypress.env('TEST_USER_PW'))
-cy.get('button[type="submit"]').click()
-cy.log('Logged in to test user account')
+  cy.visit('/login');
+  cy.get('#email').type(Cypress.env('TEST_USER_EMAIL'));
+  cy.get('input[type="password"]').type(Cypress.env('TEST_USER_PW'));
+  cy.get('button[type="submit"]').click();
+  cy.log('Logged in to test user account');
 });
