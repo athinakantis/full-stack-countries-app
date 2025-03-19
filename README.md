@@ -15,6 +15,7 @@
 - User can view the countries of the world, including where it is in the world, details of the country, current weather and more.
 - Option to **filter** countries via region or **search**
 - **Dark/Light mode** for user preference
+- Authenticated user has the option to **favorite**, **unfavorite** and view favorites.
 
 ## What this project has taught me
 
@@ -42,11 +43,11 @@ Basically you're able to add styling via classes and the class names are very se
 
 - Components can become cluttered
 
-### Testing using Cypress
+### **E2E Testing with Cypress**
 
-I was pleasantly surprised seeing UI testing in action using Cypress.
+I never thought I would enjoy testing as much as I do. But when seeing E2E testing in action using Cypress I was pleasantly surprised. It's a great tool I will definitely bring with me in my future projects.
 
-### Running Cypress test using GitHub Actions
+### **Automating tests using GitHub Actions**
 
 What I had to do:
 
@@ -58,16 +59,16 @@ name: Run Cypress Tests
 
 on:
   push:
-    branches:
-      - writing-tests
+    branches-ignore:
+      - starter
 
 ```
 
 Here I have:
 
-- Defined a name for the workflow ("Run Cypress Tests")
-- Defined what events the workflow will run ("on: push")
-- Defined which branches the workflow will run ("branches: writing-test")
+- Defined a **name** for the workflow ("Run Cypress Tests")
+- Defined what events trigger the workflow ("on: push")
+- Defined **which branches** the workflow will run (All branches except "starter")
 
 **After a lot of trial and error I figured out how to set up the jobs**
 
@@ -109,7 +110,7 @@ jobs:
 
 #### Jobs
 
-You can have multiple jobs for a workflow but in this one we only need one.
+You can have multiple jobs in a workflow but for this one we only need one.
 
 #### Defaults
 
@@ -151,4 +152,38 @@ Here you can add the secrets (aka env variables) the project uses. It's importan
     VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
     VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
     VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+```
+
+##### Cypress environment variables
+
+- **Creating**
+
+There are multiple ways of creating the cypress environment variables.  
+I chose to do this in a `cypress.env.json` file
+
+```json
+{
+  "TEST_USER_EMAIL": "example@gmail.com",
+  "TEST_USER_PW": "password_here"
+}
+```
+
+- **Access in test**
+
+```js
+cy.get('#email').type(Cypress.env('TEST_USER_EMAIL'));
+```
+
+- **Access in .yml**
+
+```yml
+- name: Run Cypress tests
+  run: npm run e2e:dev
+  env:
+    VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+    VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+    VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
+    VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+    CYPRESS_TEST_USER_EMAIL: ${{ secrets.CYPRESS_TEST_USER_EMAIL }}
+    CYPRESS_TEST_USER_PW: ${{ secrets.CYPRESS_TEST_USER_PW }}
 ```
