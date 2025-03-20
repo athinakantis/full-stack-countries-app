@@ -187,3 +187,24 @@ cy.get('#email').type(Cypress.env('TEST_USER_EMAIL'));
     CYPRESS_TEST_USER_EMAIL: ${{ secrets.CYPRESS_TEST_USER_EMAIL }}
     CYPRESS_TEST_USER_PW: ${{ secrets.CYPRESS_TEST_USER_PW }}
 ```
+
+### More on Cypress Testing
+
+#### Intercepting requests
+
+When creating some of my test, I had to make sure the requests had finished before navigating to another site. At first I used `.wait(ms)`, but it seemed time-inefficient to do so. That's when I found out about the built in method `.intercept()`, where you define a
+
+```ts
+cy.intercept(
+  'POST',
+  `${Cypress.env('SUPABASE_URL')}/rest/v1/country_favorites*`
+).as('favoriteRequest');
+cy.get('button[data-test-id="favorite-button"]').first().click();
+cy.wait('@favoriteRequest');
+```
+
+**_Some cool things about this snippet:_**
+
+1. The request is intercepted using the METHOD and URL.
+2. The interception is given an alias "favoriteRequest"
+3. After the request is made, Cypress spies on it and waits for it to complete.
