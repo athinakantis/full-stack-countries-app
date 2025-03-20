@@ -28,7 +28,7 @@
 declare global {
   namespace Cypress {
     interface Chainable {
-      login(): Chainable<void>;
+      login(username: string, password: string): Chainable<void>;
       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>;
       dismiss(
         subject: string,
@@ -51,7 +51,7 @@ Cypress.Commands.add('getCountryCards', (index?: number) => {
   return typeof index === 'number' ? cards.eq(index) : cards;
 });
 
-Cypress.Commands.add('login', () => {
+Cypress.Commands.add('login', (username, password) => {
   //   cy.request({
   //     method: 'POST',
   //     url: `https://${Cypress.env(
@@ -68,9 +68,13 @@ Cypress.Commands.add('login', () => {
   //     localStorage.setItem('supabase.auth.token', JSON.stringify(body));
   //   });
 
-  cy.visit('/login');
-  cy.get('#email').type(Cypress.env('TEST_USER_EMAIL'));
-  cy.get('input[type="password"]').type(Cypress.env('TEST_USER_PW'));
-  cy.get('button[type="submit"]').click();
-  cy.log('Logged in to test user account');
+  cy.session(`Session with ${username}`, () => {
+    cy.visit('/login');
+    cy.get('#email').type(username);
+    cy.get('input[type="password"]').type(password);
+    cy.get('button[type="submit"]').click()
+    cy.wait(1000)
+  }, {
+    cacheAcrossSpecs: true
+  })
 });
