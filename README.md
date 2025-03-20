@@ -205,6 +205,6 @@ cy.wait('@favoriteRequest');
 
 **_Some cool things about this snippet:_**
 
-1. The request is intercepted using the METHOD and URL.
-2. The interception is given an alias "favoriteRequest"
+1. The request is intercepted using the **METHOD** and **URL**.
+2. The interception is given an **alias** "favoriteRequest"
 3. After the request is made, Cypress spies on it and waits for it to complete.
