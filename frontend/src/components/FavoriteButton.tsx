@@ -74,12 +74,14 @@ const FavoriteButton = ({ country, onToggle }: FavoriteButtonProps) => {
             >
                 <button
                     data-test-id='favorite-button'
-                    className='favorite-button hover:cursor-pointer absolute p-2 right-2 top-2 rounded-full z-10'
+                    className='favorite-button hover:cursor-pointer p-1 rounded-full z-10'
                     onClick={handleToggleFavorite}
                 >
                     <Heart
-                        fill={isFavorite ? '#e2e8f0' : 'transparent'}
-                        color='#e2e8f0'
+                        fill={isFavorite && currentTheme === 'dark' ? 'oklch(0.882 0.059 254.128)' 
+                            : isFavorite && currentTheme === 'light' ? 'oklch(0.585 0.233 277.117)' 
+                            : 'transparent'}
+                        color={currentTheme === 'dark' ? 'oklch(0.882 0.059 254.128)' : 'oklch(0.585 0.233 277.117)'}
                     />
                 </button>
             </Tooltip>
