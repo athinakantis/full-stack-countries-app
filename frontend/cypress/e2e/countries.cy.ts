@@ -11,7 +11,11 @@ describe('Countries application', () => {
 
     filterTestValues.forEach((region) => {
         it(`Should correctly filter by region: ${region}`, () => {
-            cy.get('select').select(region).wait(50);
+            cy.intercept('https://restcountries.com/v3.1/region/*').as(
+                'RegionRequest'
+            );
+            cy.get('select').select(region);
+            cy.wait('@RegionRequest');
             cy.getCountryCards().first().click();
             cy.findByText(region).children().should('have.text', 'Region:');
         });
@@ -20,7 +24,11 @@ describe('Countries application', () => {
 
 describe('Testing search function', () => {
     beforeEach(() => {
-        cy.visit('/countries').wait(1000)
+        cy.intercept('https://restcountries.com/v3.1/all*').as(
+            'CountriesRequest'
+        );
+        cy.visit('/countries');
+        cy.wait('@CountriesRequest');
     });
 
     const searchTestValues = [
@@ -40,7 +48,7 @@ describe('Testing search function', () => {
 
     searchTestValues.forEach((search) => {
         it(`Test search with input: ${search.input}`, () => {
-            cy.get('#searchBar').type(search.input).wait(1000);
+            cy.get('#searchBar').type(search.input);
             cy.getCountryCards().should('have.length', search.expected.length);
         });
     });
@@ -64,8 +72,12 @@ describe('Testing search function', () => {
 
     filteredSearchTestValues.forEach((filteredSearch) => {
         it(`Searches only results of filter: ${filteredSearch.filter}`, () => {
-            cy.get('select').select(filteredSearch.filter).wait(1000);
-            cy.get('#searchBar').type(filteredSearch.search).wait(1000);
+            cy.intercept('https://restcountries.com/v3.1/region/*').as(
+                'RegionRequest'
+            );
+            cy.get('select').select(filteredSearch.filter);
+            cy.wait('@RegionRequest');
+            cy.get('#searchBar').type(filteredSearch.search);
             cy.getCountryCards().should(
                 'have.length',
                 filteredSearch.expected.length
@@ -75,8 +87,12 @@ describe('Testing search function', () => {
 
     filteredSearchTestValues.forEach((filteredSearch) => {
         it(`Apply filter after search`, () => {
-            cy.get('#searchBar').type(filteredSearch.search).wait(1000);
-            cy.get('select').select(filteredSearch.filter).wait(1000);
+            cy.intercept('https://restcountries.com/v3.1/region/*').as(
+                'RegionRequest'
+            );
+            cy.get('#searchBar').type(filteredSearch.search);
+            cy.get('select').select(filteredSearch.filter);
+            cy.wait('@RegionRequest');
             cy.getCountryCards().should(
                 'have.length',
                 filteredSearch.expected.length
