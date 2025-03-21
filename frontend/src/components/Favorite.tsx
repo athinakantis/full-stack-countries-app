@@ -85,6 +85,7 @@ const Favorites = () => {
                 ) : (
                     favorites.map((favorite) => (
                         <CountryCard
+                            favoriteState={true}
                             key={favorite.country_code}
                             country={convertToCountry(favorite)}
                         />
