@@ -40,10 +40,10 @@ export const SingleCountry = () => {
                 <>
                     <div className='max-w-xl flex flex-col max-w-full gap-3 flex-grow max-w-xl min-w-lg'>
                         <div className='w-full'>
-                            <Link to='/countries' className='text-sm h-fit hover:bg-blue-200 p-1 radius-full dark:text-slate-200 transition-all hover:pr-2 hover:px-5 hover:pl-7 hover:py-1 rounded-full relative hover:[&>svg]:left-2 hover:[&>svg]:opacity-100 hover:dark:bg-indigo-700 ease-out button-shadow'>
+                            <Link to='/countries' className='text-sm h-fit hover:bg-blue-200 p-1 radius-full dark:text-slate-200 transition-all hover:pr-2 hover:px-5 hover:pl-7 hover:py-1 rounded-full relative hover:[&>svg]:opacity-100 hover:dark:bg-indigo-700 ease-out button-shadow'>
                                 Back to countries
 
-                                <ArrowLeft color={currentTheme === 'light' ? 'oklch(0.279 0.041 260.031)' : 'oklch(0.882 0.059 254.128)'} className='inline absolute left-4 arrowleft-top opacity-0 transition-all delay-0 ease-out' size={15}
+                                <ArrowLeft color={currentTheme === 'light' ? 'oklch(0.279 0.041 260.031)' : 'oklch(0.882 0.059 254.128)'} className='inline absolute left-2 arrowleft-top opacity-0 transition-all delay-0 ease-out' size={15}
                                 />
 
                             </Link>
