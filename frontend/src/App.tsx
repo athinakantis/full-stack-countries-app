@@ -8,8 +8,8 @@ import { AuthRedirect } from './components/Auth/AuthRedirect';
 import { CountriesList } from './components/CountriesList';
 import { SingleCountry } from './components/CountryDetail';
 import { SearchProvider } from './context/SearchContext';
-import { Spinner } from './components/Spinner';
 import Favorites from './components/Favorite';
+import { Spinner } from './components/Spinner';
 
 function App() {
     return (
@@ -31,7 +31,6 @@ function App() {
                             <Route path='/' element={<Spinner />} />
                             <Route path='/countries' element={<CountriesList />} />
                             <Route path='/countries/:name' element={<SingleCountry />} />,
-                            <Route path='/test' element={<TestData />} />
                             <Route
                                 path='/favorites'
                                 element={
