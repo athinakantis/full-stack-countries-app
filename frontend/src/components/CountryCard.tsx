@@ -11,22 +11,26 @@ const CountryCard = ({ country }: { country: Country }) => {
             key={cca3}
             className='country-card rounded-sm overflow-hidden transition-shadow hover:shadow-lg bg-white dark:text-slate-200 dark:bg-slate-800 h-fit transition-all relative'
         >
-            <FavoriteButton country={country} />
-            <Link to={name.common}>
+            <Link to={`/countries/${name.common}`}>
                 <img
                     className='box-border border-b-1 border-opacity-10 border-slate-200 dark:border-b-0'
                     width={320}
                     src={flags.png}
                     alt={flags.alt}
                 />
-                <div className='p-3'>
+                <div className='p-3 flex justify-between'>
+                    <div>
+
                     <p className='text-lg font-semibold'>
                         {name.common}
                     </p>
-                    <p>
+                    {population > 0 && <p>
                         <span className='font-medium'>Population: </span>
                         {formatPopulation(population)}
-                    </p>
+                    </p>}
+                    </div>
+                                <FavoriteButton country={country} />
+
                 </div>
             </Link>
         </div>
