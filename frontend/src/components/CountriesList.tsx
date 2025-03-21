@@ -18,6 +18,8 @@ import { Spinner } from './Spinner';
 import { Error } from './Error';
 import Pagination from '@mui/material/Pagination';
 import CountryCard from './CountryCard';
+import { CountryFavorite } from '../types/favorite';
+import { favoritesApi } from '../api/services/favorites';
 
 export const CountriesList = () => {
     const { filter, search } = useSearch();
@@ -30,7 +32,11 @@ export const CountriesList = () => {
     const error = useAppSelector(selectCountriesError);
     const [page, setPage] = useState(1);
     const totalPages = useAppSelector(selectTotalPages);
+    const [favorites, setFavorites] = useState<CountryFavorite[]>([])
 
+    /*
+    When search or filter updates, dispatch actions
+    */
     useEffect(() => {
         async function updateDisplayedCountries() {
             if (allCountries.length < 1) dispatch(fetchAllCountries());
@@ -48,6 +54,16 @@ export const CountriesList = () => {
         }
         updateDisplayedCountries();
     }, [filter, search]);
+
+    /*
+    Fetch favorites on mount
+    */
+    useEffect(() => {
+        favoritesApi.getFavorites().then(favs => {
+            console.log('favs in countriesList: ', favs)
+            setFavorites(favs)
+        })
+    }, [])
 
     function pageinateCountries(array: Country[], pageSize = 10) {
         const startIndex = (page - 1) * pageSize;
@@ -90,6 +106,7 @@ export const CountriesList = () => {
                         <CountryCard
                             key={country.cca3}
                             country={country}
+                            favoriteState={favorites.map(favorite => favorite.country_name).includes(country.name.common)}
                         />
                     ))
                 ) : (
