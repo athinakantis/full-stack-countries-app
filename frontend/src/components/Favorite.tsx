@@ -75,7 +75,7 @@ const Favorites = () => {
 
     return (
         <div className='favorites-container pt-10'>
-            <h1 className='text-3xl w-fit dark:text-slate-200'>Favorites</h1>
+            <h1 className='text-3xl w-fit dark:text-slate-200 mx-auto mb-6'>Favorites</h1>
             <div
                 id='favorites-content-container'
                 className='dark:text-slate-200 flex flex-wrap gap-4  w-fit mx-auto justify-center'
