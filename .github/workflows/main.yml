@@ -46,3 +46,4 @@ jobs:
           VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
           CYPRESS_TEST_USER_EMAIL: ${{ secrets.CYPRESS_TEST_USER_EMAIL }}
           CYPRESS_TEST_USER_PW: ${{ secrets.CYPRESS_TEST_USER_PW }}
+          CYPRESS_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
