@@ -134,7 +134,8 @@ Spinner: Earth animation
 Custom override for MUI Pagination component 
 */
 .dark .css-1bug3cd-MuiButtonBase-root-MuiPaginationItem-root,
-.css-btxnvc-MuiPaginationItem-root {
+.css-btxnvc-MuiPaginationItem-root,
+.dark .css-1wzaoor {
   color: oklch(0.929 0.013 255.508);
 
   &:not(div):hover {
