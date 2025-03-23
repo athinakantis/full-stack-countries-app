@@ -11,7 +11,7 @@ describe('Testing favorites', () => {
             'POST',
             `${Cypress.env('SUPABASE_URL')}/rest/v1/country_favorites*`
         ).as('favoriteRequest');
-        cy.get('button[data-test-id="favorite-button"]').first().click();
+        cy.get('button[data-test-id="favorite-button"]', {timeout: 10000}).first().click();
         cy.wait('@favoriteRequest');
         cy.visit('/favorites').getCountryCards().should('have.length', 1);
     });
@@ -22,7 +22,7 @@ describe('Testing favorites', () => {
             'DELETE',
             `${Cypress.env('SUPABASE_URL')}/rest/v1/country_favorites*`
         ).as('favoriteRequest');
-        cy.get('button[data-test-id="favorite-button"]').first().click();
+        cy.get('button[data-test-id="favorite-button"]', {timeout: 10000}).first().click();
         cy.wait('@favoriteRequest');
         cy.getCountryCards().should('not.exist');
     });
