@@ -1,7 +1,8 @@
 # Countries Full Stack App
 
+[Live Page](https://countries-of-the-world-kantis.netlify.app/)
+
 ![Run Cypress Tests](https://github.com/athinakantis/full-stack-countries-app/actions/workflows/main.yml/badge.svg)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/76410e91-7672-4de5-bd26-f7dacf735213/deploy-status)](https://app.netlify.com/sites/countries-of-the-world-kantis/deploys)
 
 ## Technologies Used
 
@@ -17,6 +18,12 @@
 - Option to **filter** countries via region or **search**
 - **Dark/Light mode** for user preference
 - Authenticated user has the option to **favorite**, **unfavorite** and view favorites.
+
+## Running locally
+
+In case you want to run the project locally:
+
+1. Clone the project using `git clone `
 
 ## What this project has taught me
 
@@ -217,4 +224,4 @@ When deploying an app that uses react-router-dom with netlify the routes don't w
 
 **The solution:**  
 Super simple, add a `\_redirects` file in the projects public folder.  
-In this file, add `/* /index.html`. Now any request goes through index.html which is where we have our script + routes.
+In this file, add `/* /index.html 200`. Now any request goes through index.html which is where we have our script + routes.
