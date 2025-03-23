@@ -192,7 +192,7 @@ cy.get('#email').type(Cypress.env('TEST_USER_EMAIL'));
 
 #### Intercepting requests
 
-When creating some of my test, I had to make sure the requests had finished before navigating to another site. At first I used `.wait(ms)`, but it seemed time-inefficient to do so. That's when I found out about the built in method `.intercept()`, where you define a
+When creating some of my test, I had to make sure the requests had finished before navigating to another site. At first I used `.wait(ms)`, but it seemed time-inefficient to do so. That's when I found out about the built in method `.intercept`. This method allows you to spy on requests.
 
 ```ts
 cy.intercept(
