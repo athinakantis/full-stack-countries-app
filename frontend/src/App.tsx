@@ -10,6 +10,7 @@ import { SingleCountry } from './components/CountryDetail';
 import { SearchProvider } from './context/SearchContext';
 import Favorites from './components/Favorite';
 import { Spinner } from './components/Spinner';
+import { Home } from './components/Home';
 
 function App() {
     return (
@@ -28,7 +29,7 @@ function App() {
                                     </>
                                 }
                             />
-                            <Route path='/' element={<Spinner />} />
+                            <Route path='/' element={<Home />} />
                             <Route path='/countries' element={<CountriesList />} />
                             <Route path='/countries/:name' element={<SingleCountry />} />,
                             <Route

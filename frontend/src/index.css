@@ -2,129 +2,128 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 main {
-    min-height: calc(100vh - 52px);
+  min-height: calc(100vh - 52px);
 }
 
 @layer utilities {
-    .arrowleft-top {
-        top: 5px;
-    }
+  .arrowleft-top {
+    top: 5px;
+  }
 
-    .link-btn {
-        transition: drop-shadow 10ms linear;
-    }
+  .link-btn {
+    transition: drop-shadow 10ms linear;
+  }
 
-    /*
+  /*
     Back to countries button
     DARK
     */
-    .dark .button-shadow {
-        /* Button shadow dark mode */
-        &:hover {
-            filter: drop-shadow(0 3px 0px oklch(0.257 0.09 281.288));
-            box-shadow: inset 5px 8px 20px oklch(0.398 0.195 277.366);
-            background-color: oklch(0.511 0.262 276.966);
-        }
+  .dark .button-shadow {
+    /* Button shadow dark mode */
+    &:hover {
+      filter: drop-shadow(0 3px 0px oklch(0.257 0.09 281.288));
+      box-shadow: inset 5px 8px 20px oklch(0.398 0.195 277.366);
+      background-color: oklch(0.511 0.262 276.966);
     }
+  }
 
-    /*
+  /*
     Back to countries button
     LIGHT
     */
-    .button-shadow {
-        filter: drop-shadow(0 0px 0px oklch(0.359 0.144 278.697));
+  .button-shadow {
+    filter: drop-shadow(0 0px 0px oklch(0.359 0.144 278.697));
 
-        &:hover {
-            filter: drop-shadow(0 3px 0px oklch(0.707 0.165 254.624));
-            box-shadow: inset 5px 8px 20px oklch(0.882 0.059 254.128);
-            background-color: oklch(0.809 0.105 251.813);
-        }
+    &:hover {
+      filter: drop-shadow(0 3px 0px oklch(0.707 0.165 254.624));
+      box-shadow: inset 5px 8px 20px oklch(0.882 0.059 254.128);
+      background-color: oklch(0.809 0.105 251.813);
     }
+  }
 
-    & .country-card {
-        scale: 1;
-        transition: all 200ms;
-        &:hover {
-            scale: 1.05;
-        }
+  & .country-card {
+    scale: 1;
+    transition: all 200ms;
+    &:hover {
+      scale: 1.05;
     }
+  }
 
-    & .home-heart {
-        width: 24px; /* pathのサイズ */
-        height: 24px; /* pathのサイズ */
-        background: #ff5252; /* 色 */
-        clip-path: path(
-            'M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z'
-        );
-        transform: scale(5);
+  /*
+  Home page Hover effect
+  */
+  & .custom-hover-translate-y {
+    & > a:hover {
+      transform: translateY(-5px);
     }
+  }
 }
 
 body {
-    font-family: 'Inter';
+  font-family: 'Inter';
 }
 
 :where(h1, h2, h3, h4, h5, h6) {
-    font-family: 'Oxygen';
-    font-weight: light;
+  font-family: 'Oxygen';
+  font-weight: light;
 }
 
 p,
 nav li {
-    font-family: 'Lato';
+  font-family: 'Lato';
 }
 
 .font-lato {
-    font-family: 'Lato';
+  font-family: 'Lato';
 }
 
 #countries-container {
-    min-height: calc(100vh - 52px);
+  min-height: calc(100vh - 52px);
 }
 
 /*
 Spinner: Earth animation
 */
 @keyframes EarthSpin {
-    from {
-        background-position-x: -200%;
-    }
-    to {
-        background-position-x: 258%;
-    }
+  from {
+    background-position-x: -200%;
+  }
+  to {
+    background-position-x: 258%;
+  }
 }
 
 .globe-container {
-    &:hover #spinner-container > div {
-        animation-play-state: running;
-    }
+  &:hover #spinner-container > div {
+    animation-play-state: running;
+  }
 }
 
 .earth-still {
-    background-image: url('/earth.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat-x;
+  background-image: url('/earth.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat-x;
 
-    animation-name: EarthSpin;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-play-state: paused;
+  animation-name: EarthSpin;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-play-state: paused;
 }
 
 .earth-spin {
-    background-image: url('/earth.png');
-    background-size: cover;
-    background-repeat: repeat-x;
+  background-image: url('/earth.png');
+  background-size: cover;
+  background-repeat: repeat-x;
 
-    animation-name: EarthSpin;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-play-state: running;
+  animation-name: EarthSpin;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-play-state: running;
 
-    /* 
+  /* 
   3D-effect
   box-shadow: inset 0.4rem 0.2rem 2rem 20px,
     inset 0px 0px 2px var(--color-slate-800);
@@ -136,21 +135,29 @@ Custom override for MUI Pagination component
 */
 .dark .css-1bug3cd-MuiButtonBase-root-MuiPaginationItem-root,
 .css-btxnvc-MuiPaginationItem-root {
-    color: oklch(0.929 0.013 255.508) !important;
+  color: oklch(0.929 0.013 255.508);
 
-    &:not(div):hover {
-        background-color: #091225;
+  &:not(div):hover {
+    background-color: #091225;
+  }
+
+  &:disabled {
+    color: oklch(0.704 0.04 256.788);
+  }
+
+  &[aria-current='page'] {
+    background-color: oklch(0.457 0.24 277.023);
+
+    &:hover {
+      background-color: oklch(0.511 0.262 276.966);
     }
+  }
+}
 
-    &:disabled {
-        color: oklch(0.704 0.04 256.788);
-    }
+.MuiPaginationItem-ellipsis {
+  color: oklch(0.279 0.041 260.031) !important;
+}
 
-    &[aria-current='page'] {
-        background-color: oklch(0.457 0.24 277.023);
-
-        &:hover {
-            background-color: oklch(0.511 0.262 276.966);
-        }
-    }
+.dark .MuiPaginationItem-ellipsis {
+  color: oklch(0.882 0.059 254.128) !important;
 }

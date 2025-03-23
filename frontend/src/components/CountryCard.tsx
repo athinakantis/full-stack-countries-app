@@ -3,8 +3,8 @@ import { Country } from '../types/country';
 import { formatPopulation } from '../utils/formatCountryData';
 import FavoriteButton from './FavoriteButton';
 
-const CountryCard = ({ country }: { country: Country }) => {
-    const { name, flags, population, cca3 } = country
+const CountryCard = ({ country, favoriteState }: { country: Country, favoriteState: boolean }) => {
+    const { name, flags, population, cca3 } = country;
 
     return (
         <div
@@ -18,21 +18,17 @@ const CountryCard = ({ country }: { country: Country }) => {
                     src={flags.png}
                     alt={flags.alt}
                 />
-                <div className='p-3 flex justify-between'>
-                    <div>
-
-                    <p className='text-lg font-semibold'>
-                        {name.common}
-                    </p>
-                    {population > 0 && <p>
-                        <span className='font-medium'>Population: </span>
-                        {formatPopulation(population)}
-                    </p>}
-                    </div>
-                                <FavoriteButton country={country} />
-
+                <div className='p-3 justify-between min-h-18 flex-col flex justify-center'>
+                    <p className='text-lg font-semibold'>{name.common}</p>
+                    {population > 0 && (
+                        <p>
+                            <span className='font-medium'>Population: </span>
+                            {formatPopulation(population)}
+                        </p>
+                    )}
                 </div>
             </Link>
+            <FavoriteButton country={country} favoriteState={favoriteState} />
         </div>
     );
 };

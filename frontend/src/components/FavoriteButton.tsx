@@ -9,12 +9,13 @@ import { Tooltip } from '@mui/material';
 interface FavoriteButtonProps {
     country: Country;
     onToggle?: (isFavorite: boolean) => void;
+    favoriteState: boolean
 }
 
-const FavoriteButton = ({ country, onToggle }: FavoriteButtonProps) => {
+const FavoriteButton = ({ country, onToggle, favoriteState }: FavoriteButtonProps) => {
     const { user } = useAuth();
     const { currentTheme } = useTheme();
-    const [isFavorite, setIsFavorite] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(favoriteState);
     const [loading, setLoading] = useState(false);
     const [isInitialized, setIsInitialized] = useState(false);
 
@@ -74,13 +75,13 @@ const FavoriteButton = ({ country, onToggle }: FavoriteButtonProps) => {
             >
                 <button
                     data-test-id='favorite-button'
-                    className='favorite-button hover:cursor-pointer p-1 rounded-full z-10'
+                    className='favorite-button hover:cursor-pointer p-1 absolute bottom-5 rounded-full z-10 right-5'
                     onClick={handleToggleFavorite}
                 >
                     <Heart
-                        fill={isFavorite && currentTheme === 'dark' ? 'oklch(0.882 0.059 254.128)' 
-                            : isFavorite && currentTheme === 'light' ? 'oklch(0.585 0.233 277.117)' 
-                            : 'transparent'}
+                        fill={isFavorite && currentTheme === 'dark' ? 'oklch(0.882 0.059 254.128)'
+                            : isFavorite && currentTheme === 'light' ? 'oklch(0.585 0.233 277.117)'
+                                : 'transparent'}
                         color={currentTheme === 'dark' ? 'oklch(0.882 0.059 254.128)' : 'oklch(0.585 0.233 277.117)'}
                     />
                 </button>
