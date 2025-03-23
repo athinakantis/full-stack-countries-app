@@ -1,6 +1,7 @@
 # Countries Full Stack App
 
 ![Run Cypress Tests](https://github.com/athinakantis/full-stack-countries-app/actions/workflows/main.yml/badge.svg)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/76410e91-7672-4de5-bd26-f7dacf735213/deploy-status)](https://app.netlify.com/sites/countries-of-the-world-kantis/deploys)
 
 ## Technologies Used
 
@@ -192,7 +193,7 @@ cy.get('#email').type(Cypress.env('TEST_USER_EMAIL'));
 
 #### Intercepting requests
 
-When creating some of my test, I had to make sure the requests had finished before navigating to another site. At first I used `.wait(ms)`, but it seemed time-inefficient to do so. That's when I found out about the built in method `.intercept()`, where you define a
+When creating some of my test, I had to make sure the requests had finished before navigating to another site. At first I used `.wait(ms)`, but it seemed time-inefficient to do so. That's when I found out about the built in method `.intercept`. This method allows you to spy on requests.
 
 ```ts
 cy.intercept(
@@ -208,3 +209,12 @@ cy.wait('@favoriteRequest');
 1. The request is intercepted using the **METHOD** and **URL**.
 2. The interception is given an **alias** "favoriteRequest"
 3. After the request is made, Cypress spies on it and waits for it to complete.
+
+### Fix Netlify Routing issue
+
+**The problem:**  
+When deploying an app that uses react-router-dom with netlify the routes don't work, as in directly going to a route like `/home` or `/login` would result in a "Page not found" error, although these routes do exist in the project.
+
+**The solution:**  
+Super simple, add a `\_redirects` file in the projects public folder.  
+In this file, add `/* /index.html`. Now any request goes through index.html which is where we have our script + routes.

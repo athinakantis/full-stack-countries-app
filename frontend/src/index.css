@@ -134,7 +134,8 @@ Spinner: Earth animation
 Custom override for MUI Pagination component 
 */
 .dark .css-1bug3cd-MuiButtonBase-root-MuiPaginationItem-root,
-.css-btxnvc-MuiPaginationItem-root {
+.css-btxnvc-MuiPaginationItem-root,
+.dark .css-1wzaoor {
   color: oklch(0.929 0.013 255.508);
 
   &:not(div):hover {
@@ -160,4 +161,11 @@ Custom override for MUI Pagination component
 
 .dark .MuiPaginationItem-ellipsis {
   color: oklch(0.882 0.059 254.128) !important;
+}
+
+@media screen and (max-width: 861px) {
+  .header-content {
+    justify-content: center;
+    padding: 0.3rem;
+  }
 }
