@@ -8,8 +8,8 @@ export const Home = () => {
   return (
     <section
       id='home-container'
-      className='flex flex-wrap *:w-70 gap-6 justify-center pt-20 *:bg-blue-300 *:py-4 *:px-6 *:hover:cursor-pointer *:dark:bg-indigo-500 *:rounded-sm *:flex *:gap-4 *:items-center **:[span]:w-11/12
-      custom-hover-translate-y *:transition-all *:text-center *:font-semibold'
+      className='flex flex-wrap *:w-75 gap-6 justify-center pt-20 *:bg-blue-300 *:py-4 *:px-6 *:hover:cursor-pointer *:dark:bg-indigo-400 *:rounded-sm *:flex *:gap-7 *:items-center **:[span]:flex-grow
+      custom-hover-translate-y *:transition-all *:font-semibold'
     >
       <Link to='/countries'>
         <Earth />
