@@ -19,12 +19,6 @@
 - **Dark/Light mode** for user preference
 - Authenticated user has the option to **favorite**, **unfavorite** and view favorites.
 
-## Running locally
-
-In case you want to run the project locally:
-
-1. Clone the project using `git clone `
-
 ## What this project has taught me
 
 ### **Redux**
