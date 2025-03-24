@@ -43,10 +43,8 @@ export const CountriesList = () => {
             setPage(1);
             if (search) {
                 if (filter) {
-                    console.log('Fetching regional countries')
                     await dispatch(fetchRegionalCountries(filter));
                 }
-                console.log('Searching countries')
                 dispatch(filterCountriesBySearch({ search, filter }));
             } else if (filter) {
                 await dispatch(fetchRegionalCountries(filter));
@@ -60,7 +58,6 @@ export const CountriesList = () => {
     */
     useEffect(() => {
         favoritesApi.getFavorites().then(favs => {
-            console.log('favs in countriesList: ', favs)
             setFavorites(favs)
         })
     }, [])

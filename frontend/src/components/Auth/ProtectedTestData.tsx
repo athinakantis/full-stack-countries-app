@@ -13,7 +13,6 @@ export const ProtectedTestData = () => {
     const [loading, setLoading] = useState<boolean>(false)
 
     const { user } = useAuth();
-    console.log(user);
 
     const fetchProtectedData = async () => {
         try {

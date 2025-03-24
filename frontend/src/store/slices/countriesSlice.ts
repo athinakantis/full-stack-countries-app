@@ -51,7 +51,6 @@ export const countriesSlice = createSlice({
     filterCountriesBySearch: (state, action) => {
       state.error = null;
       const { search, filter } = action.payload;
-      console.log(search, filter);
       if (filter) {
         state.filteredCountries = state.regionalCountries.filter((country) =>
           country.name.common.toLowerCase().includes(search.toLowerCase())
