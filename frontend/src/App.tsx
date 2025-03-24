@@ -9,7 +9,6 @@ import { CountriesList } from './components/CountriesList';
 import { SingleCountry } from './components/CountryDetail';
 import { SearchProvider } from './context/SearchContext';
 import Favorites from './components/Favorite';
-import { Spinner } from './components/Spinner';
 import { Home } from './components/Home';
 
 function App() {
